@@ -1,0 +1,25 @@
+# Add specified repository into sources list using specified filename.
+# Add Google Chrome repo
+- apt_repository:
+    repo: deb http://dl.google.com/linux/chrome/deb/ stable main
+    state: present
+    filename: google-chrome
+# Add Microsoft VSCode repo
+- apt_repository:
+    repo: deb https://packages.microsoft.com/repos/vscode stable main
+    state: present
+    filename: vscode
+
+# Install Google Chrome    
+- hosts: localhost
+  become: true
+  tasks:
+  - name: Install Chrome
+    apt: name=google-chrome-stable
+
+# Install Microsoft VSCode
+- hosts: localhost
+  become: true
+  tasks:
+  - name: Install VSCode
+    apt: name=code
